@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block title %}
+    创建用户
+{% endblock %}
+
+{% block content %}
+    <h1>创建用户</h1>
+    <p>填写下列表单以完整注册：</p>
+    <form method="post">
+        {{ user_form.as_p }}
+        {% csrf_token %}
+    <p><input type="submit" value="提交"></p>
+    </form>
+{% endblock %}

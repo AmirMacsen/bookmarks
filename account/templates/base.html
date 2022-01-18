@@ -1,0 +1,74 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="stylesheet" href="{% static "css/base.css" %}">
+</head>
+<body>
+<div id="header">
+    <span class="logo">Bookmarks</span>
+    {% if request.user.is_authenticated %}
+        <ul class="menu">
+            <li {% if section == 'dashboard' %} class="selected" {% endif %}>
+                <a href="{% url 'dashboard' %}">我的首页</a>
+            </li>
+            <li {% if section == "image" %}class="selected"{% endif %}>
+                <a href="{% url "images:list" %}">图库</a>
+            </li>
+            <li {% if section == "朋友圈" %}class="selected"{% endif %}>
+                <a href="{% url "user_list" %}">朋友圈</a>
+            </li>
+        </ul>
+    {% endif %}
+
+    <span class="user">
+        {% if request.user.is_authenticated %}
+            {{ request.user.username }},
+            <a href="{% url "logout" %}">注销</a>
+        {% else %}
+            <a href="{% url "login" %}">登录</a>
+        {% endif %}
+    </span>
+
+</div>
+
+{% if messages %}
+    <ul class="messages">
+    {% for message in messages %}
+        <li class="{{ message.tags }}">
+        {{ message|safe }}
+            <a href="#" class="close">x</a>
+        </li>
+    {% endfor %}
+    </ul>
+{% endif %}
+
+<div id="content">
+    {% block content %}
+    {% endblock %}
+</div>
+
+<script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-3.4.1.min.js"></script>
+ <script src="https://cdn.jsdelivr.net/npm/js-cookie@2.2.1/src/js.cookie.min.js"></script>
+<script>
+    var csrftoken = Cookies.get('csrftoken')
+
+    function csrfSafeMethod(method){
+        return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
+    }
+    $.ajaxSetup({
+        beforeSend: function (xhr, settings){
+            if(!csrfSafeMethod(settings.type) && !this.crossDomain){
+                xhr.setRequestHeader("X-CSRFToken",csrftoken)
+            }
+        }
+    })
+    $(document).ready(function () {
+        {% block domready %}
+        {% endblock %}
+    });
+</script>
+</body>
+</html>

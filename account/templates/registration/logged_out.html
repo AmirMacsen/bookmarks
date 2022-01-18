@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block title %}
+    注销
+{% endblock %}
+
+{% block content %}
+    <h1>注销</h1>
+    <p>
+        你已经成功退出应用
+        可以使用 <a href="{% url "login" %}">重新登录</a>
+    </p>
+{% endblock %}

@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block title %}
+    首页
+{% endblock %}
+
+{% block content %}
+    <h1>首页</h1>
+    {% with total_images_created=request.user.images_created.count  %}
+        <p>欢迎来到控制台，你有{{ total_images_created }}张图片打了标签</p>
+    {% endwith %}
+     <p>将下列按钮拖到书签工具栏上，以将来自其他网站的图像作为书签   → <a href="javascript:{% include "bookmarklet_launcher.js" %}" class="button">Bookmark it</a></p>
+    <p>欢迎进入系统, 你可以<a href="{% url "edit" %}">编辑个人信息</a>或者<a href="{% url "password_change" %}">修改密码</a></p>
+
+
+    <h2>What's happening</h2>
+      <div id="action-list">
+        {% for action in actions %}
+          {% include "actions/action/detail.html" %}
+        {% endfor %}
+      </div>
+{% endblock %}
