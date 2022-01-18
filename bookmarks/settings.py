@@ -136,8 +136,8 @@ LOGOUT_URL = "logout"
 # email service
 EMAIL_HOST = 'smtp.qq.com'
 EMAIL_PORT = 25
-EMAIL_HOST_USER = "3254168608@qq.com"
-EMAIL_HOST_PASSWORD = "pcwlqxeymawrchje"
+EMAIL_HOST_USER = ""
+EMAIL_HOST_PASSWORD = ""
 EMAIL_USE_TLS = True
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 
@@ -150,8 +150,8 @@ AUTHENTICATION_BACKENDS = [
 ]
 
 # google oauth2
-SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = "580988600635-5urvn7t3url1tmlbcljunmhrcjj8q09r.apps.googleusercontent.com"
-SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = "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"
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = ""
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = ""
 
 
 # 项目运行时则为模型动态添加get_absolute_url方法
